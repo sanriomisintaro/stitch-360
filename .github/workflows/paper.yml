@@ -1,19 +1,30 @@
 name: Build JOSS paper
+
 on:
   push:
-    paths: ["paper/**"]
+    paths:
+      - 'paper/**'
+      - '.github/workflows/paper.yml'
   workflow_dispatch:
+
 jobs:
-  build:
+  draft:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: openjournals/openjournals-draft-action@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build draft PDF
+        # Either of these is fine:
+        # uses: openjournals/openjournals-draft-action@v1.0
+        uses: openjournals/openjournals-draft-action@master
         with:
           journal: joss
           paper-path: paper/paper.md
+
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
         with:
           name: joss-paper
+          # Output goes next to the input by default:
           path: paper/paper.pdf
