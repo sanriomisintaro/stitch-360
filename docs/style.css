@@ -1,0 +1,130 @@
+body {
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+canvas {
+    max-width: 90%;
+    border: 2px solid #ccc;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+input[type="file"] {
+    margin: 20px 0;
+}
+
+/* This is the Flexbox container */
+.card-container {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+}
+
+/* Each card */
+.card {
+    flex: 1;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Loading overlay + spinner --- */
+.loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(2px);
+    z-index: 9999;
+}
+
+.loader-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 24px 28px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+.spinner {
+    width: 64px;
+    height: 64px;
+    border: 6px solid #d0d0d0;
+    border-top-color: #333;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Helpers */
+.hidden { display: none !important; }
+
+/* Actions + controls */
+.actions {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.controls label {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 14px;
+}
+
+/* Buttons */
+.btn {
+    appearance: none;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #333;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn2 {
+    appearance: none;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #888;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}

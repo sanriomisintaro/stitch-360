@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>360° Image Stitcher</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <!-- Loading overlay -->
+    <div id="loader" class="loader hidden" aria-live="polite" aria-busy="true">
+        <div class="loader-inner">
+            <div class="spinner" role="status" aria-label="Stitching in progress"></div>
+            <p>Stitching…</p>
+        </div>
+    </div>
+
+    <h1>Basic 360° Image Stitcher</h1>
+    <p>Upload a dual-fisheye 360° image to begin.</p>
+
+    <input class="btn2" type="file" id="imageLoader" accept="image/*" />
+
+    <div class="card-container">
+        <div class="card">
+            <h2>Source Image</h2>
+            <canvas id="sourceCanvas"></canvas>
+        </div>
+        <div class="card">
+            <h2>Stitched Panorama</h2>
+            <canvas id="panoramaCanvas" style="transform: rotate(180deg);"></canvas>
+        </div>
+    </div>
+
+    <!-- Appears only when stitching is done -->
+    <div id="actions" class="actions hidden">
+        <button id="downloadBtn" class="btn">Download PNG</button>
+
+        <div class="controls">
+            <label>
+                JPG quality:
+                <input id="jpgQuality" type="range" min="0.5" max="0.95" step="0.05" value="0.85" />
+                <span id="jpgQualityVal">85%</span>
+            </label>
+            <label>
+                Size:
+                <select id="jpgScale">
+                    <option value="1">100%</option>
+                    <option value="0.75">75%</option>
+                    <option value="0.5">50%</option>
+                </select>
+            </label>
+        </div>
+
+        <button id="downloadJpgBtn" class="btn">Download JPG (compressed)</button>
+    </div>
+
+    <script src="stitcher.js"></script>
+</body>
+</html>
