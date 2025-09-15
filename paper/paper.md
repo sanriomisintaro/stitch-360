@@ -70,6 +70,8 @@ For clarity, the per-pixel pipeline can be summarized as:
 
 Stitch 360 is a single-page web app (HTML/CSS/JavaScript). It reads a dual-fisheye image into a canvas, performs per-pixel mapping and blending into an equirectangular canvas, and exposes **PNG/JPEG export** (with quality and downscale options). Long loops **yield** via `requestAnimationFrame` to keep the UI responsive during stitching. **Dependencies:** none (no OpenCV or native libraries). A minimal UI adds (i) a progress overlay, (ii) save as PNG (lossless), and (iii) **save as JPEG (compressed) with a quality slider and optional downscale (100/75/50%)** implemented via an offscreen canvas (JPEG uses an opaque white background to avoid alpha artifacts).
 
+![Processing pipeline of Stitch 360: dual-fisheye -> spherical mapping -> equidistant lens projection -> feather blend -> equirectangular panorama. Export produces PNG (lossless) or JPEG (quality/scale) and applies the 180° view rotation used for display.](figure-pipeline.png){ width=70% }
+
 # Quality control and performance
 
 The repository includes or plans to include:
