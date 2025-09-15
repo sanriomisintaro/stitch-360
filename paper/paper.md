@@ -23,7 +23,8 @@ bibliography: paper.bib
 
 Repository: <https://github.com/sanriomisintaro/stitch-360>  
 Live demo (GitHub Pages): <https://sanriomisintaro.github.io/stitch-360/>  
-Project tagline: *Convert dual-fisheye images to equirectangular panoramas.*
+Project tagline: *Convert dual-fisheye images to equirectangular panoramas.*  
+Software available at [@stitch360].
 
 # Statement of need
 
@@ -41,22 +42,28 @@ OpenCV exposes a high-level `cv::Stitcher` pipeline covering feature detection, 
 
 # Methods
 
-Let $(\lambda, \varphi)$ denote longitude/latitude (yaw/pitch) on the unit sphere. The equirectangular output of width $W$ and height $H = \tfrac{W}{2}$ uses the standard mapping  
-\[
+Let $(\lambda, \varphi)$ denote longitude/latitude (yaw/pitch) on the unit sphere. The equirectangular output of width $W$ and height $H = \tfrac{W}{2}$ uses the standard mapping
+
+$$
 x = W \cdot \frac{\lambda + \pi}{2\pi}, \quad
 y = H \cdot \frac{\varphi + \frac{\pi}{2}}{\pi}
-\]
+$$
+
 [@wiki-equirect; @panotools-equirect].
 
 Each panorama pixel corresponds to a unit direction $\mathbf{v} \in \mathbb{R}^3$. For each lens (left/right) we compute the angle $\theta$ between $\mathbf{v}$ and the lens optical axis. Under the **equidistant fisheye** model, the image-plane radius is $r = f\,\theta$ with $f = \tfrac{R}{\text{FOV}/2}$, where $R$ is the calibrated lens-circle radius. With per-lens **roll** and optional **yaw bias**, we obtain azimuth $\alpha$ around the axis and sample source coordinates
-\[
+
+$$
 s_x = c_x + r\sin\alpha, \qquad
-s_y = c_y - r\cos\alpha,
-\]
+s_y = c_y - r\cos\alpha
+$$
+
 bounded by a calibrated circle. Overlaps are blended with a smooth feather weight
-\[
+
+$$
 w = \max\!\left(0,\, 1 - \frac{\theta}{\mathrm{FOV}/2}\right)^{\gamma},
-\]
+$$
+
 and colors are bilinearly interpolated before normalized averaging. The repository documents defaults (centers, FOV, $\gamma$) and calibration tips.
 
 For clarity, the per-pixel pipeline can be summarized as:
@@ -81,12 +88,11 @@ The repository includes or plans to include:
 
 # Example
 
-
 **Input (dual-fisheye)**  
-![Dual-fisheye example](../docs/assets/readme/example-1.jpg){ width=70% }
+![Dual-fisheye example](example-1.jpg){ width=70% }
 
 **Output (equirectangular panorama)**  
-![Stitched panorama](../docs/assets/readme/example-1-stitched.jpg){ width=70% }
+![Stitched panorama](example-1-stitched.jpg){ width=70% }
 
 # Acknowledgements
 
