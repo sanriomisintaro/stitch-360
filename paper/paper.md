@@ -79,7 +79,12 @@ The repository includes or plans to include:
 
 # Example
 
-![Processing pipeline of Stitch 360: dual-fisheye input -> spherical mapping -> equidistant lens projection -> feather blend -> equirectangular panorama. Export produces PNG (lossless) or JPEG (quality/scale) and applies the 180° view rotation used for display.](figure-pipeline.png){ width=70% }
+
+**Input (dual-fisheye)**  
+![Dual-fisheye example](../docs/assets/readme/example-1.jpg){ width=70% }
+
+**Output (equirectangular panorama)**  
+![Stitched panorama](../docs/assets/readme/example-1-stitched.jpg){ width=70% }
 
 # Acknowledgements
 
