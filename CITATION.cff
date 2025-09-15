@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: "Stitch 360"
+message: "If you use this software, please cite it as below."
+type: software
+authors:
+  - family-names: Sintaro
+    given-names: Sanriomi
+    orcid: "https://orcid.org/0000-0002-7188-307X"
+repository-code: "https://github.com/sanriomisintaro/stitch-360"
+url: "https://sanriomisintaro.github.io/stitch-360/"
+abstract: "Convert dual-fisheye images to equirectangular panoramas in the browser (HTML5 Canvas, vanilla JavaScript; no dependencies)."
+keywords: [panorama, 360 imaging, equirectangular, fisheye, JavaScript, web]
+license: MIT
+version: "v0.1.0"

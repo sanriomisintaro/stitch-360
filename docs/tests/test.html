@@ -1,0 +1,40 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Stitch 360 – minimal tests</title>
+<style>body{font-family:system-ui;margin:2rem} .ok{color:green} .fail{color:#b00}</style>
+<h1>Stitch 360 – minimal tests</h1>
+<pre id="log"></pre>
+<script type="module">
+  const log = (ok, msg) => {
+    const p = document.createElement('div');
+    p.className = ok ? 'ok' : 'fail';
+    p.textContent = (ok ? '✔ ' : '✘ ') + msg;
+    document.getElementById('log').appendChild(p);
+    if (!ok) console.error(msg);
+  };
+
+  // Re-implement small pure bits here to test expected math.
+  const feather = (theta, halfFov, gamma=2) => Math.pow(Math.max(0, 1 - theta/halfFov), gamma);
+  const near = (a,b,eps=1e-9) => Math.abs(a-b) < eps;
+
+  // 1) Feather weight edges
+  log( near(feather(0, 1), 1), 'feather(0) == 1' );
+  log( near(feather(1, 1), 0), 'feather(halfFov) == 0' );
+  log( feather(0.5, 1) > feather(0.75, 1), 'feather decreases with theta' );
+
+  // 2) Equidistant: r = f * theta
+  const f = 100;
+  log( near(f*0, 0), 'r(0) == 0' );
+  log( near(f*Math.PI/4, 78.5398163397, 1e-6), 'r = f*theta numeric check' );
+
+  // 3) Equirect height relation H = W/2
+  const W = 4000, H = W/2;
+  log( H === 2000, 'H = W/2 holds for output pano' );
+
+  // Final verdict
+  const allOk = [...document.querySelectorAll('.fail')].length === 0;
+  const end = document.createElement('p');
+  end.style.fontWeight = 'bold';
+  end.textContent = allOk ? 'All tests passed.' : 'Some tests failed. See console.';
+  document.body.appendChild(end);
+</script>

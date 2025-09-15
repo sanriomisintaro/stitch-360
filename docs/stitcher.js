@@ -1,5 +1,5 @@
 /**
- * Stitch 360 — client-side dual-fisheye -> equirectangular stitcher.
+ * Stitch 360: client-side dual-fisheye -> equirectangular stitcher.
  * Repo: https://github.com/sanriomisintaro/stitch-360
  * About: Convert dual-fisheye images to equirectangular panoramas.
  *
