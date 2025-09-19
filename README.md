@@ -2,7 +2,7 @@
 
 > Convert dual-fisheye images to equirectangular panoramas — in your browser (HTML5 Canvas, vanilla JS). No installs, no uploads.
 
-[**Live demo →**](https://sanriomisintaro.github.io/stitch-360/)  
+[**Live demo**](https://sanriomisintaro.github.io/stitch-360/)  
 Repository: https://github.com/sanriomisintaro/stitch-360
 
 ![Pipeline overview](docs/assets/readme/figure-pipeline.png)
@@ -99,7 +99,6 @@ All processing happens **in your browser**. Images are **not uploaded**.
 
 Open `docs/tests/test.html` in a browser.  
 It checks a few pure math invariants (feather weight, equidistant relation, `H = W/2`).  
-(If you want a Node test runner, we can add a tiny `src/` + Vitest/Jest later.)
 
 ---
 
@@ -110,9 +109,9 @@ If this tool helps your work, please cite:
 - **Paper**: see `paper/paper.md` (JOSS submission).  
 - **Software**: `CITATION.cff` is included.
 
-Example (software):
+Example (Live Demo):
 Sanriomi Sintaro. Stitch 360: Convert dual-fisheye images to equirectangular panoramas.
-https://github.com/sanriomisintaro/stitch-360
+https://sanriomisintaro.github.io/stitch-360
 
 ---
 
