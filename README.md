@@ -1,5 +1,8 @@
 # Stitch 360 v1.0.0
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23073884.svg)](https://doi.org/10.5281/zenodo.23073884)
+
+
 **Stitch 360** is an open-source, browser-native framework for converting side-by-side dual-fisheye imagery into equirectangular panoramas. The v1.0.0 research release uses a transparent equidistant fisheye model, bilinear source sampling, and angular feather blending, and includes reproducible synthetic, baseline, real-camera, and runtime evaluation utilities.
 
 > Associated manuscript: **Stitch 360: Quality and Computational Performance of a Lightweight Browser-Native Dual-Fisheye Panorama Stitching Framework** (submitted separately; the manuscript itself is intentionally not stored in this repository).
@@ -136,7 +139,7 @@ Synthetic full-reference evaluation includes MSE, MAE, PSNR, luminance SSIM, sea
 
 ## Citation
 
-See `CITATION.cff`. A permanent archive DOI can be added after the GitHub `v1.0.0` release is archived (for example through Zenodo).
+See `CITATION.cff`. The archived Stitch 360 v1.0.0 research release is permanently available at https://doi.org/10.5281/zenodo.23073884.
 
 ## License
 

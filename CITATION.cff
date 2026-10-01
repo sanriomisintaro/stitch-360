@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "Stitch 360"
-message: "If you use this software or its research workflow, please cite the archived software release and associated paper when available."
+message: "If you use this software or its research workflow, please cite the archived Stitch 360 v1.0.0 software release (DOI: 10.5281/zenodo.23073884) and the associated paper when available."
 type: software
 authors:
   - family-names: Sintaro
@@ -19,4 +19,5 @@ keywords:
   - reproducible research
 license: MIT
 version: "1.0.0"
+doi: "10.5281/zenodo.23073884"
 date-released: "2026-10-01"
