@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Stitch 360 – Baseline artifact exporter</title>
+  <link rel="stylesheet" href="baseline-export.css">
+</head>
+<body>
+  <main>
+    <h1>Stitch 360 – Baseline Artifact Exporter</h1>
+    <p class="lead">Create a reproducible bundle containing the exact ground-truth panorama, synthetic dual-fisheye input, and Stitch 360 reconstruction used for the FFmpeg v360 comparison reported in the associated study. Hugin support remains available in the benchmark scripts as an optional extension.</p>
+
+    <section class="panel">
+      <label>2:1 equirectangular panoramas <input id="files" type="file" accept="image/*" multiple></label>
+      <div class="grid">
+        <label>Working width <select id="workingWidth"><option>512</option><option selected>1024</option><option>2048</option><option value="native">native</option></select></label>
+        <label>FOV (deg) <input id="fovDeg" type="number" step="0.1" value="185"></label>
+        <label>Radius scale <input id="radiusScale" type="number" step="0.001" value="0.965"></label>
+        <label>Reference gamma <input id="gamma" type="number" step="0.1" value="2.0"></label>
+        <label>Right-lens gain <input id="rightLensGain" type="number" step="0.01" value="1.00"></label>
+        <label>Generator FOV delta (deg) <input id="generatorFovDelta" type="number" step="0.1" value="0"></label>
+        <label>Seam half-width (deg) <input id="seamHalfWidthDeg" type="number" step="1" value="10"></label>
+      </div>
+      <button id="run" disabled>Build ZIP bundle</button>
+      <p id="status">Select one or more 2:1 panoramas.</p>
+      <p class="note">For large datasets, export in batches of 5–10 panoramas to keep browser memory use predictable.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Bundle contents</h2>
+      <pre>manifest.csv
+experiment-config.json
+images/&lt;id&gt;/ground_truth.png
+images/&lt;id&gt;/dual_fisheye.png
+images/&lt;id&gt;/stitch360.png</pre>
+    </section>
+  </main>
+  <div id="loader" class="overlay hidden"><div><div class="spinner"></div><p id="loaderText">Working…</p></div></div>
+  <script type="module" src="baseline-export.js"></script>
+</body>
+</html>

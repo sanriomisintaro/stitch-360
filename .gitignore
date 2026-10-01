@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+Thumbs.db
+node_modules/
+.venv/
+venv/
+# Raw real-camera files are intentionally kept outside Git.
+data/real/*.JPG
+data/real/*.jpg
+data/real/*.jpeg
+data/real/*.png
+# Generated experiment artifacts can be large; published summaries remain tracked.
+results/generated/
+analysis/output*/
+benchmark/output*/

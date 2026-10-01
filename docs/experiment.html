@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stitch 360 Research Experiment – Synthetic Round Trip</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="experiment.css" />
+</head>
+<body>
+  <div id="experimentLoader" class="loader hidden" aria-live="polite" aria-busy="true">
+    <div class="loader-inner">
+      <div class="spinner" role="status" aria-label="Experiment in progress"></div>
+      <p>Running experiment…</p>
+    </div>
+  </div>
+
+  <nav class="research-nav">
+    <a href="index.html">← Stitch 360 app</a>
+    <a href="batch-experiment.html">Gamma ablation batch</a>
+    <a href="tests/test.html">Browser tests</a>
+  </nav>
+
+  <h1>Stitch 360 Research Experiment</h1>
+  <p class="lead">Controlled synthetic round trip: equirectangular ground truth → dual-fisheye → Stitch 360 reconstruction.</p>
+
+  <section class="research-panel">
+    <h2>Experiment configuration</h2>
+    <div class="experiment-controls">
+      <label>Ground-truth panorama (2:1)
+        <input type="file" id="gtLoader" accept="image/*" />
+      </label>
+      <label>Working width
+        <select id="workingWidth">
+          <option value="1024">1024 px</option>
+          <option value="2048" selected>2048 px</option>
+          <option value="3840">3840 px</option>
+          <option value="native">Native</option>
+        </select>
+      </label>
+      <label>FOV
+        <input id="fovDeg" type="number" min="181" max="220" step="0.5" value="185" />
+      </label>
+      <label>Radius scale
+        <input id="radiusScale" type="number" min="0.90" max="1" step="0.001" value="0.965" />
+      </label>
+      <label>Feather γ
+        <input id="gamma" type="number" min="0.1" max="8" step="0.1" value="2.0" />
+      </label>
+      <button id="runExperiment" class="btn" disabled>Run round-trip experiment</button>
+    </div>
+    <p id="status" class="status">Load a 2:1 equirectangular panorama to begin.</p>
+  </section>
+
+  <section class="metrics-grid" aria-label="Round-trip metrics">
+    <div class="metric"><span>MSE</span><strong id="metricMse">—</strong></div>
+    <div class="metric"><span>PSNR</span><strong id="metricPsnr">—</strong></div>
+    <div class="metric"><span>SSIM</span><strong id="metricSsim">—</strong></div>
+    <div class="metric"><span>Seam PSNR</span><strong id="metricSeamPsnr">—</strong></div>
+    <div class="metric"><span>Seam SSIM</span><strong id="metricSeamSsim">—</strong></div>
+    <div class="metric"><span>Generator</span><strong id="metricGenerate">—</strong></div>
+    <div class="metric"><span>Stitcher</span><strong id="metricStitch">—</strong></div>
+    <div class="metric"><span>Resolution</span><strong id="metricResolution">—</strong></div>
+    <div class="metric"><span>Feather γ</span><strong id="metricGamma">—</strong></div>
+  </section>
+
+  <section class="experiment-grid">
+    <article class="card">
+      <h2>1. Ground truth</h2>
+      <canvas id="gtCanvas"></canvas>
+      <p>Reference equirectangular panorama used for full-reference evaluation.</p>
+    </article>
+    <article class="card">
+      <h2>2. Synthetic dual-fisheye</h2>
+      <canvas id="dfCanvas"></canvas>
+      <p>Generated using the same equidistant lens geometry as the reconstruction pipeline.</p>
+      <button id="downloadDf" class="btn" disabled>Download dual-fisheye PNG</button>
+    </article>
+    <article class="card">
+      <h2>3. Reconstructed panorama</h2>
+      <canvas id="recCanvas"></canvas>
+      <p>Raw reconstruction used directly for quantitative comparison; no display-only 180° rotation is applied here.</p>
+      <button id="downloadRec" class="btn" disabled>Download reconstruction PNG</button>
+    </article>
+  </section>
+
+  <section class="research-panel note-panel">
+    <h2>Sprint 3 metric scope</h2>
+    <p>This page now reports MSE, PSNR, luminance SSIM, and nominal seam-band metrics. For multi-image gamma ablation and CSV export, use the <a href="batch-experiment.html">batch experiment</a>. LPIPS remains reserved for a later offline analysis pipeline because it requires a neural feature extractor.</p>
+  </section>
+
+  <script type="module" src="experiment.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+.research-nav {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 12px;
+}
+
+.research-nav a { color: #333; font-weight: 600; }
+.lead { max-width: 900px; margin: 0 auto 20px; }
+
+.research-panel {
+  max-width: 1180px;
+  margin: 20px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.experiment-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: end;
+  gap: 12px;
+}
+
+.experiment-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.experiment-controls input,
+.experiment-controls select {
+  padding: 9px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.status { margin: 14px 0 0; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+.metrics-grid {
+  max-width: 1180px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.metric {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.metric span { display: block; font-size: 13px; margin-bottom: 6px; }
+.metric strong { font-size: 20px; }
+
+.experiment-grid {
+  max-width: 1400px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.experiment-grid .card { min-width: 0; }
+.experiment-grid canvas { width: 100%; max-width: 100%; height: auto; }
+.note-panel { text-align: left; }

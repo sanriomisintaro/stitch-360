@@ -1,40 +1,67 @@
 <!doctype html>
 <meta charset="utf-8">
-<title>Stitch 360 – minimal tests</title>
-<style>body{font-family:system-ui;margin:2rem} .ok{color:green} .fail{color:#b00}</style>
-<h1>Stitch 360 – minimal tests</h1>
-<pre id="log"></pre>
+<title>Stitch 360 – browser core tests</title>
+<style>
+  body{font-family:system-ui;margin:2rem;max-width:900px}
+  .ok{color:green}.fail{color:#b00}.summary{font-weight:700;margin-top:1rem}
+</style>
+<h1>Stitch 360 – browser core tests</h1>
+<p>These checks import the same research modules used by the application and synthetic experiment.</p>
+<div id="log"></div>
 <script type="module">
+  import {
+    createLensBasis,
+    directionToEquirectangularPixel,
+    directionToFisheye,
+    equirectangularPixelToDirection,
+    fisheyePixelToDirection,
+  } from '../core/projection.js';
+  import { featherWeight } from '../core/blending.js';
+  import { sampleBilinear } from '../core/sampling.js';
+  import { generateDualFisheyeImageData } from '../core/synthetic-generator.js';
+  import { stitchImageData } from '../core/stitcher-core.js';
+  import { computePSNR } from '../core/metrics.js';
+
+  let failures = 0;
   const log = (ok, msg) => {
+    if (!ok) failures += 1;
     const p = document.createElement('div');
     p.className = ok ? 'ok' : 'fail';
     p.textContent = (ok ? '✔ ' : '✘ ') + msg;
     document.getElementById('log').appendChild(p);
-    if (!ok) console.error(msg);
   };
+  const near = (a,b,eps=1e-9) => Math.abs(a-b) <= eps;
 
-  // Re-implement small pure bits here to test expected math.
-  const feather = (theta, halfFov, gamma=2) => Math.pow(Math.max(0, 1 - theta/halfFov), gamma);
-  const near = (a,b,eps=1e-9) => Math.abs(a-b) < eps;
+  log(near(featherWeight(0, 1, 2), 1), 'feather(0) == 1');
+  log(near(featherWeight(1, 1, 2), 0), 'feather(halfFov) == 0');
 
-  // 1) Feather weight edges
-  log( near(feather(0, 1), 1), 'feather(0) == 1' );
-  log( near(feather(1, 1), 0), 'feather(halfFov) == 0' );
-  log( feather(0.5, 1) > feather(0.75, 1), 'feather decreases with theta' );
+  const centerDir = equirectangularPixelToDirection(200, 100, 400, 200, 0);
+  log(near(centerDir[0], 1, 1e-12), 'equirectangular center -> +X');
+  const centerPx = directionToEquirectangularPixel([1,0,0], 400, 200, 0);
+  log(near(centerPx.x, 200) && near(centerPx.y, 100), '+X -> equirectangular center');
 
-  // 2) Equidistant: r = f * theta
-  const f = 100;
-  log( near(f*0, 0), 'r(0) == 0' );
-  log( near(f*Math.PI/4, 78.5398163397, 1e-6), 'r = f*theta numeric check' );
+  const basis = createLensBasis(true, 0, 0);
+  const mapped = directionToFisheye([1,0,0], basis, 100, 100, 50, Math.PI/2, 100);
+  log(mapped && near(mapped.sx,100) && near(mapped.sy,100), 'right optical axis -> fisheye center');
+  const inverse = fisheyePixelToDirection(100,100,basis,100,100,50,Math.PI/2,100);
+  log(inverse && near(inverse[0],1) && near(inverse[1],0) && near(inverse[2],0), 'fisheye center -> right optical axis');
 
-  // 3) Equirect height relation H = W/2
-  const W = 4000, H = W/2;
-  log( H === 2000, 'H = W/2 holds for output pano' );
+  const px = new Uint8ClampedArray([
+    10,20,30,255, 40,50,60,255,
+    70,80,90,255, 100,110,120,255
+  ]);
+  log(JSON.stringify(sampleBilinear(px,2,2,0,0)) === JSON.stringify([10,20,30]), 'integer bilinear sample returns source pixel');
 
-  // Final verdict
-  const allOk = [...document.querySelectorAll('.fail')].length === 0;
+  const w=64,h=32;
+  const gt = new Uint8ClampedArray(w*h*4);
+  for(let i=0;i<gt.length;i+=4){gt[i]=80;gt[i+1]=130;gt[i+2]=200;gt[i+3]=255;}
+  const dual = await generateDualFisheyeImageData({panoData:gt,panoW:w,panoH:h,yieldEveryRows:0});
+  const rec = await stitchImageData({srcData:dual.data,srcW:w,srcH:h,panoW:w,panoH:h,yieldEveryRows:0});
+  const psnr = computePSNR(gt, rec.data);
+  log(psnr > 45, `uniform synthetic round trip PSNR > 45 dB (${psnr.toFixed(2)} dB)`);
+
   const end = document.createElement('p');
-  end.style.fontWeight = 'bold';
-  end.textContent = allOk ? 'All tests passed.' : 'Some tests failed. See console.';
+  end.className = 'summary ' + (failures ? 'fail' : 'ok');
+  end.textContent = failures === 0 ? 'All browser tests passed.' : `${failures} browser test(s) failed.`;
   document.body.appendChild(end);
 </script>

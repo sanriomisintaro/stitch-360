@@ -1,0 +1,5 @@
+group,n,nominal_ncc_mean,nominal_ncc_sd,frozen_ncc_mean,frozen_ncc_sd
+development image,1,0.597,,0.876,
+all independent tests,21,0.613,0.246,0.864,0.172
+indoor/enclosed tests,10,0.489,0.146,0.847,0.092
+outdoor/open-air tests,11,0.726,0.269,0.879,0.225

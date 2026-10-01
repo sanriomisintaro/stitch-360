@@ -1,0 +1,16 @@
+{
+  "bootstrap_resamples": 10000,
+  "seed": 360,
+  "reference_gamma": 2.0,
+  "alpha": 0.05,
+  "metrics": [
+    "psnr",
+    "ssim",
+    "mae",
+    "seamPsnr",
+    "seamSsim",
+    "seamMae",
+    "seamGradientError",
+    "runtimeMs"
+  ]
+}

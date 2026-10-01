@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stitch 360 Research – Gamma Ablation Batch</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="experiment.css" />
+  <link rel="stylesheet" href="batch-experiment.css" />
+</head>
+<body>
+  <div id="batchLoader" class="loader hidden" aria-live="polite" aria-busy="true">
+    <div class="loader-inner">
+      <div class="spinner" role="status" aria-label="Batch experiment in progress"></div>
+      <p id="loaderText">Running batch experiment…</p>
+    </div>
+  </div>
+
+  <nav class="research-nav">
+    <a href="index.html">← Stitch 360 app</a>
+    <a href="experiment.html">Single-image experiment</a>
+    <a href="tests/test.html">Browser tests</a>
+  </nav>
+
+  <h1>Stitch 360 Gamma Ablation Batch</h1>
+  <p class="lead">Run a reproducible synthetic round-trip experiment on multiple 2:1 panoramas and export raw/summary CSV results.</p>
+
+  <section class="research-panel">
+    <h2>Batch configuration</h2>
+    <div class="experiment-controls batch-controls">
+      <label>Ground-truth panoramas (2:1)
+        <input type="file" id="batchFiles" accept="image/*" multiple />
+      </label>
+      <label>Working width
+        <select id="workingWidth">
+          <option value="512">512 px</option>
+          <option value="1024" selected>1024 px</option>
+          <option value="2048">2048 px</option>
+          <option value="3840">3840 px</option>
+          <option value="native">Native</option>
+        </select>
+      </label>
+      <label>FOV (deg)
+        <input id="fovDeg" type="number" min="181" max="220" step="0.5" value="185" />
+      </label>
+      <label>Radius scale
+        <input id="radiusScale" type="number" min="0.90" max="1" step="0.001" value="0.965" />
+      </label>
+      <label>Gamma values
+        <input id="gammaList" type="text" value="0.5, 1.0, 1.5, 2.0, 3.0, 4.0" />
+      </label>
+      <label>Right-lens gain
+        <input id="rightLensGain" type="number" min="0.7" max="1.3" step="0.01" value="1.05" />
+      </label>
+      <label>Generator FOV delta (deg)
+        <input id="generatorFovDelta" type="number" min="-5" max="5" step="0.25" value="0" />
+      </label>
+      <label>Seam half-width (deg)
+        <input id="seamHalfWidthDeg" type="number" min="1" max="45" step="1" value="10" />
+      </label>
+      <label>Measured repeats
+        <input id="runtimeRepeats" type="number" min="1" max="10" step="1" value="1" />
+      </label>
+      <button id="runBatch" class="btn" disabled>Run batch experiment</button>
+    </div>
+    <p id="batchStatus" class="status">Select one or more 2:1 equirectangular panoramas.</p>
+  </section>
+
+  <section class="metrics-grid" aria-label="Batch status metrics">
+    <div class="metric"><span>Images</span><strong id="metricImages">0</strong></div>
+    <div class="metric"><span>Gamma settings</span><strong id="metricGammas">0</strong></div>
+    <div class="metric"><span>Completed rows</span><strong id="metricRows">0</strong></div>
+    <div class="metric"><span>Environment</span><strong id="metricEnv">—</strong></div>
+  </section>
+
+  <section class="research-panel">
+    <div class="panel-title-row">
+      <h2>Gamma summary</h2>
+      <div class="button-row">
+        <button id="downloadRawCsv" class="btn" disabled>Download raw CSV</button>
+        <button id="downloadSummaryCsv" class="btn" disabled>Download summary CSV</button>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table id="summaryTable">
+        <thead>
+          <tr>
+            <th>γ</th><th>N</th><th>PSNR mean±SD</th><th>SSIM mean±SD</th>
+            <th>Seam PSNR mean±SD</th><th>Seam SSIM mean±SD</th>
+            <th>Seam MAE</th><th>Seam grad. error</th><th>Runtime ms</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <canvas id="ablationChart" width="1000" height="420" aria-label="Gamma ablation chart"></canvas>
+  </section>
+
+  <section class="research-panel">
+    <h2>Raw results</h2>
+    <div class="table-wrap raw-table-wrap">
+      <table id="rawTable">
+        <thead>
+          <tr>
+            <th>Image</th><th>γ</th><th>Resolution</th><th>PSNR</th><th>SSIM</th><th>MAE</th>
+            <th>Seam PSNR</th><th>Seam SSIM</th><th>Seam MAE</th><th>Seam gradient error</th>
+            <th>Runtime ms</th><th>Generator ms</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="research-panel note-panel">
+    <h2>Metric definition</h2>
+    <p><strong>SSIM</strong> is computed on Rec. 709 luminance using a 7×7 uniform local window, valid-window centers only, and sample covariance. <strong>Seam metrics</strong> are calculated within bands around the nominal ±90° crossover meridians. Controlled perturbations can be introduced at synthetic-capture time using a right-lens photometric gain and/or a generator-only FOV offset. With both set to their neutral values (gain 1.00, FOV delta 0°), the experiment is a clean matched-model round trip; non-neutral values create known mismatch conditions for sensitivity experiments.</p>
+  </section>
+
+  <script type="module" src="batch-experiment.js"></script>
+</body>
+</html>

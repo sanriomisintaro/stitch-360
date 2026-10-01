@@ -1,0 +1,2 @@
+id,image,width,height,fovDeg,radiusScale,gamma,rightLensGain,generatorFovDelta,seamHalfWidthDeg,groundTruth,dualFisheye,stitch360
+001_coordinate,coordinate_fixture.png,512,256,200,0.985,2,1,0,10,images/001_coordinate/ground_truth.png,images/001_coordinate/dual_fisheye.png,images/001_coordinate/stitch360.png

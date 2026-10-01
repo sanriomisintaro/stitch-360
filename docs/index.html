@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Loading overlay -->
     <div id="loader" class="loader hidden" aria-live="polite" aria-busy="true">
         <div class="loader-inner">
             <div class="spinner" role="status" aria-label="Stitching in progress"></div>
@@ -17,6 +16,8 @@
 
     <h1>Stitch 360: Client-side dual-fisheye</h1>
     <p>Upload a dual-fisheye 360° image to begin.</p>
+    <p><a href="experiment.html">Single-image research experiment</a> · <a href="batch-experiment.html">Gamma ablation batch</a> · <a href="tests/test.html">Browser tests</a></p>
+    <p><a href="experiment.html"><strong>Research mode:</strong> synthetic ground-truth round-trip experiment →</a></p>
 
     <input class="btn2" type="file" id="imageLoader" accept="image/*" />
 
@@ -31,7 +32,6 @@
         </div>
     </div>
 
-    <!-- Appears only when stitching is done -->
     <div id="actions" class="actions hidden">
         <button id="downloadBtn" class="btn">Download PNG</button>
 
@@ -54,6 +54,14 @@
         <button id="downloadJpgBtn" class="btn">Download JPG (compressed)</button>
     </div>
 
-    <script src="stitcher.js"></script>
+    <hr />
+    <p><strong>Research tools:</strong>
+      <a href="experiment.html">single round-trip experiment</a> ·
+      <a href="batch-experiment.html">batch gamma experiment</a> ·
+      <a href="baseline-export.html">external-baseline artifact exporter</a> ·
+      <a href="real-camera-export.html">real-camera exporter</a>
+    </p>
+
+    <script type="module" src="stitcher.js"></script>
 </body>
 </html>

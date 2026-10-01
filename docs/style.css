@@ -17,14 +17,12 @@ input[type="file"] {
     margin: 20px 0;
 }
 
-/* This is the Flexbox container */
 .card-container {
     display: flex;
     gap: 20px;
     align-items: stretch;
 }
 
-/* Each card */
 .card {
     flex: 1;
     background-color: white;
@@ -33,7 +31,6 @@ input[type="file"] {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* --- Loading overlay + spinner --- */
 .loader {
     position: fixed;
     inset: 0;
@@ -69,10 +66,8 @@ input[type="file"] {
     to { transform: rotate(360deg); }
 }
 
-/* Helpers */
 .hidden { display: none !important; }
 
-/* Actions + controls */
 .actions {
     margin-top: 16px;
     display: flex;
@@ -99,7 +94,6 @@ input[type="file"] {
     font-size: 14px;
 }
 
-/* Buttons */
 .btn {
     appearance: none;
     border: 0;

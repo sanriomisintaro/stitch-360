@@ -1,0 +1,23 @@
+image_id,original_filename,width,height,aspect_ratio,camera_make,camera_model,scene_stratum,study_role
+RC01,image (1).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC02,image (2).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC03,image (3).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC04,image (4).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC05,image (5).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC06,image (6).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,development/calibration
+RC07,image (7).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC08,image (8).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC09,image (9).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC10,image (10).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC11,image (11).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC12,image (12).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC13,image (13).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC14,image (14).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC15,image (15).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC16,image (16).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC17,image (17).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC18,image (18).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,indoor/enclosed,independent test
+RC19,image (19).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC20,image (20).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC21,image (21).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test
+RC22,image (22).JPG,5792,2896,2.0000,SAMSUNG,SM-R210,outdoor/open-air,independent test

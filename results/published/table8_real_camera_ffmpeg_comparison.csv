@@ -1,0 +1,7 @@
+metric,stitch360_mean,stitch360_sd,ffmpeg_mean,ffmpeg_sd,wilcoxon_p
+seam_luminance_jump,3.565,1.139,19.084,5.173,<0.001
+seam_rgb_jump,6.485,1.978,34.704,9.074,<0.001
+seam_gradient_ratio,0.899,0.157,4.896,1.142,<0.001
+seam_rgb_ratio,0.912,0.148,4.941,1.098,<0.001
+horizontal_total_variation,4.55,1.128,4.578,1.096,0.111
+laplacian_variance,1075.2,530.9,1085.0,511.2,0.432

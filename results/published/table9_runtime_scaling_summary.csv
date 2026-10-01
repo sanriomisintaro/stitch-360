@@ -1,0 +1,4 @@
+output_width,output_height,pixels_mp,mean_median_time_ms,sd_ms,throughput_mp_s
+512,256,0.131,32.79,2.33,4.0
+1024,512,0.524,113.98,6.12,4.6
+2048,1024,2.097,436.21,12.64,4.81

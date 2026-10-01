@@ -1,0 +1,11 @@
+.batch-controls input[type="text"] { min-width: 220px; }
+.panel-title-row { display:flex; gap:16px; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+.button-row { display:flex; gap:10px; flex-wrap:wrap; }
+.table-wrap { overflow:auto; width:100%; }
+table { width:100%; border-collapse:collapse; background:#fff; font-size:13px; }
+th, td { border:1px solid #ddd; padding:8px 10px; text-align:right; white-space:nowrap; }
+th:first-child, td:first-child { text-align:left; }
+thead th { position:sticky; top:0; background:#f6f6f6; z-index:1; }
+.raw-table-wrap { max-height:460px; }
+#ablationChart { width:100%; max-width:1000px; height:auto; background:#fff; margin-top:18px; border:1px solid #ddd; }
+@media (max-width: 800px) { .batch-controls { grid-template-columns:1fr !important; } }

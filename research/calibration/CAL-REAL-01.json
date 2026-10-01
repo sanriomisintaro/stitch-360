@@ -1,0 +1,31 @@
+{
+  "calibration_set_id": "CAL-REAL-01",
+  "camera_model": "Samsung SM-R210",
+  "development_image": "image (6).JPG",
+  "fovDeg": 185.0,
+  "radiusScale": 0.965,
+  "centers": {
+    "left": [
+      0.25,
+      0.5
+    ],
+    "right": [
+      0.75,
+      0.5
+    ]
+  },
+  "rollDeg": {
+    "left": 0.0,
+    "right": 0.5
+  },
+  "yawBiasDeg": {
+    "left": 0.0,
+    "right": 0.0
+  },
+  "globalYawDeg": 0.0,
+  "blend": {
+    "enable": true,
+    "gamma": 2.0
+  },
+  "note": "Selected using the development image only; frozen for all 21 independent test images."
+}

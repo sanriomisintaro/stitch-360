@@ -1,0 +1,5 @@
+condition,psnr_mean_db,psnr_sd_db,ssim_mean,ssim_sd,seam_psnr_mean_db,seam_psnr_sd_db,seam_ssim_mean,seam_ssim_sd,seam_mae_mean,seam_gradient_error_mean
+C0,34.45,13.07,0.976,0.03,34.6,10.53,0.9666,0.0441,2.47,1.5
+C1,28.59,4.89,0.9747,0.0292,29.95,5.23,0.9631,0.0425,5.34,1.68
+C2,31.96,11.49,0.9588,0.0491,31.75,9.87,0.9368,0.0775,4.03,2.14
+C3,27.55,5.56,0.9575,0.0485,28.44,6.24,0.9333,0.0758,6.76,2.28
